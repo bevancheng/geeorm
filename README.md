@@ -102,3 +102,21 @@ type User struct{
 ```sql
 CREATE TABLE `User` (`Name` text PRIMARY KEY, `Age` integer)
 ```
+
+## Day3
+## Day4
+
+1，支持Update、Delete、Count
+record.go中Update方法支持两种入参，平铺的kv对和map类型的键值对。generator接受的参数必须是map类型键值对，因此Update需要自动转换为map类型。
+2，链式调用
+``` go
+s := geeorm.NewEngine("sqlite3", "gee.db").NewSession()
+var users []User
+s.Where("Age > 18").Limit(3).Find(&users)
+```
+## Day5
+Hook，提前在可能增加功能的地方埋好一个钩子，当需要重新修改或增加这个地方的逻辑，把扩展类或方法挂载到这个点即可。
+如GitHub支持的travis持续集成服务，当git push时，会触发travis拉取新的代码进行构建。
+如IDE中的 Ctrl+S后自动格式化代码。前端hot reload机制。
+对于ORM来说，扩展点在CURD前后比较合适。
+

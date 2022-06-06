@@ -16,6 +16,9 @@ const (
 	LIMIT
 	WHERE
 	ORDERBY
+	UPDATE
+	DELETE
+	COUNT
 )
 
 //通过Type调用对应generator生成该子句对应的SQL
