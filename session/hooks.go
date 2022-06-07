@@ -16,6 +16,17 @@ const (
 	AfterInsert  = "AfterInsert"
 )
 
+//ITableName方法更好，性能比用反射要高
+type IBeforeQuery interface {
+	BeforeQuery(s *Session) error
+}
+
+type IAfterQuery interface {
+	AfterQuery(s *Session) error
+}
+
+///
+
 func (s *Session) CallMethod(method string, value interface{}) {
 	fm := reflect.ValueOf(s.RefTable().Model).MethodByName(method)
 	if value != nil {
