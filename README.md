@@ -128,3 +128,21 @@ C(Consistency): 几个并行执行的事务，执行结果必须与按某一顺�
 I(Isolation): 事务的执行不受其他事务的干扰，事务执行的中间结果对其他事务必须是透明的。
 D(Durability): 对于任意已提交事务，系统必须保证该事务对数据库的改变不被丢失，即使数据库出现故障。
 SQL中，BEGIN开启事务，COMMIT提交事务，ROLLBACK回滚事务。
+
+## Day7
+struct变化时，数据库的字段(field)自动迁移(migrate)
+只支持字段新增与删除，不支持字段类型变更
+
+新增字段：
+```SQL
+ALTER TABLE table_name ADD COLUMN col_name, col_type;
+```
+ALTER关键字用来新增字段或重命名字段
+
+删除字段：
+```SQL
+CREATE TABLE new_table AS SELECT col1, col2, ... from old_table;
+DROP TABLE old_table;
+ALTER TABLE new_table RENAME TO old_table;
+```
+
